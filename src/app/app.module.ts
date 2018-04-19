@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent, DialogOverviewExampleDialog } from './home/home.component';
 import { TodoComponent } from './todo/todo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
@@ -26,7 +26,8 @@ import { TodoapiService } from './todoapi.service';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    TodoComponent
+    TodoComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,8 @@ import { TodoapiService } from './todoapi.service';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [LoginService, LoginGuard, TodoapiService],
-  bootstrap: [AppComponent]
+  providers: [LoginService, LoginGuard, TodoapiService ],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule { }

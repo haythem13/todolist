@@ -1,0 +1,25 @@
+
+
+  <h3>
+    you want to edit this todo
+  </h3>
+
+  <form class="example-form">
+
+
+
+    <mat-form-field  class='example-full-width'>
+      <input matInput placeholder="Input" value= {{data.title}}>
+      </mat-form-field>
+
+
+    <mat-form-field  class='example-full-width'>
+      <textarea matInput placeholder="Textarea">{{data.desc}}</textarea>
+    </mat-form-field>
+
+
+
+    <br> <br> <br> <br>
+    <mat-checkbox  ng-change="false" [(ngModel)]='data.done'> {{data?.done}} </mat-checkbox>
+
+  </form>

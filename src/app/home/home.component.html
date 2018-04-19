@@ -131,7 +131,15 @@
   <mat-table #table [dataSource]="dataSource">
 
 
-
+ <!-- Name Column -->
+ <ng-container matColumnDef="index">
+  <mat-header-cell *matHeaderCellDef>
+    <h2>index</h2>
+  </mat-header-cell>
+  <mat-cell *matCellDef="let element">
+    <h3>{{(element.pos)+1}} </h3>
+  </mat-cell>
+</ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>
@@ -169,9 +177,9 @@
         <h2>edit</h2>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <a href="#">
-          <i class="material-icons">mode_edit</i>
-        </a>
+        <button  mat-button (click)="openDialog(element)" >
+          <i class="material-icons" >mode_edit</i>
+        </button>
       </mat-cell>
     </ng-container>
 
