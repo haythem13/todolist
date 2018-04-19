@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { TodoComponent } from './todo/todo.component';
+import { LoginGuard } from './login.guard';
 
 const routes: Routes = [
   {
@@ -16,11 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate : [LoginGuard]
   },
   {
     path: 'todo',
-    component: TodoComponent
+    component: TodoComponent,
+    canActivate : [LoginGuard]
   }
 
 ];

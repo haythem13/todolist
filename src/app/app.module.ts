@@ -12,6 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { HttpModule } from '@angular/http';
+import { LoginService } from './login.service';
+import { LoginGuard } from './login.guard';
+import { TodoapiService } from './todoapi.service';
+
+
 
 
 @NgModule({
@@ -28,9 +34,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [LoginService, LoginGuard, TodoapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

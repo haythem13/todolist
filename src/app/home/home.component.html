@@ -1,3 +1,181 @@
-<p>
-  home works!
-</p>
+<div class="tittle">
+  <h1>Todos</h1>
+</div>
+<br>
+
+
+<mat-card class="example-card">
+
+
+  <!--
+<mat-expansion-panel hideToggle="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      add todo
+    </mat-panel-title>
+    <mat-panel-description>
+      <i class="material-icons">plus_one</i>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+
+
+
+  <mat-form-field>
+    <input matInput placeholder="Title">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="description of todo"></textarea>
+  </mat-form-field>
+
+  <mat-datepicker #picker></mat-datepicker>
+
+
+  <mat-action-row>
+
+    <button mat-button color="primary">Add</button>
+  </mat-action-row>
+</mat-expansion-panel>
+-->
+
+  <mat-expansion-panel hideToggle="true">
+
+    <mat-expansion-panel-header>
+      <button mat-button> add new todo </button>
+    </mat-expansion-panel-header>
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out your todo's title</ng-template>
+          <mat-form-field>
+            <input matInput placeholder=" todo title " formControlName="title" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext type='submit'>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel> description of todo </ng-template>
+          <mat-form-field>
+            <textarea matInput placeholder=" description " formControlName="desc" required> </textarea>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext type='submit'>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+
+          <button mat-button type='submit' (click)="add(firstFormGroup ,secondFormGroup )">confirm</button>
+
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+  </mat-expansion-panel>
+
+</mat-card>
+<br>
+
+
+<!--   *********************************************************
+
+<mat-card class="example-card">
+  <div *ngFor="let todo of todos">
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{todo.title}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{todo.date}}
+        </mat-panel-description>
+        <mat-panel-description>
+        <a href="#"><i class="material-icons">mode_edit</i></a>
+      </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <h1>{{todo.desc}}</h1>
+      <mat-checkbox [(ngModel)]='todo.done'> {{todo?.done}} </mat-checkbox>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+  <br>
+
+
+</div>
+</mat-card>
+-->
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" name="filter" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource">
+
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>
+        <h2>title</h2>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <h3>{{element.title}} </h3>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef>
+        <h2>Date</h2>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <h3>{{element.date}}</h3>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>
+        <h2>status</h2>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <h3>
+          <mat-checkbox  ng-change="false" [(ngModel)]='element.done'> {{element?.done}} </mat-checkbox>
+        </h3>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef>
+        <h2>edit</h2>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <a href="#">
+          <i class="material-icons">mode_edit</i>
+        </a>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

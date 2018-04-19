@@ -1,0 +1,38 @@
+.tittle{
+  color: blue;
+  text-align: center;
+  text-shadow: aqua;
+}
+.container-cards {
+  display: table-cell;
+  vertical-align: middle;
+}
+.example-card {
+  margin: auto;
+padding: 0px;
+  max-width: 800px;
+
+}
+
+/* Structure */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+

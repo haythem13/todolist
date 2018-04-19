@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -7,19 +10,30 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  mail = '';
-  pass = '';
+  email = '';
+  password = '';
 
   loginForm = new FormGroup({
-    mail: new FormControl('', [Validators.email, Validators.required]),
-    pass: new FormControl('', Validators.required)
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  constructor(private loginservice: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
+
+
+
   sub(f) {
-    console.log(f);
-  }
+    this.loginservice.login(f.value).subscribe(res => {
+      console.log(res.json().data);
+      const token = res.json().data.token;
+      if (res.status === 200) {
+      this.loginservice.savetoken(token);
+        this.router.navigateByUrl('/home');
+    }
+
+    });
+}
 }
